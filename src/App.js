@@ -6,6 +6,11 @@ import './App.css';
 export default function App() {
 
   const [dice, setDice] = React.useState(allNewDice())
+  const [tenzies, setTenzies] = React.useState(false)
+
+  React.useEffect(() =>{
+
+  }, [dice])
 
 
   function generateNewDie(){
