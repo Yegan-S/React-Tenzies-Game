@@ -1,6 +1,7 @@
 import React from "react";
 import Die from "./Die";
 import {nanoid} from "nanoid";
+
 import './App.css';
 
 export default function App() {
@@ -9,7 +10,13 @@ export default function App() {
   const [tenzies, setTenzies] = React.useState(false)
 
   React.useEffect(() =>{
-
+    const allHeld = dice.every( die => die.isHeld)
+    const firstValue = dice[0].value
+    const allSameValue = dice.every( die => die.value === firstValue)
+    if (allHeld && allSameValue){
+      setTenzies (true)
+      
+    }
   }, [dice])
 
 
@@ -31,11 +38,18 @@ export default function App() {
   }
 
   function rollDice (){
-    setDice(oldDice => oldDice.map(die => {
+
+    if(!tenzies){
+      setDice(oldDice => oldDice.map(die => {
       return die.isHeld ? 
       die : 
         generateNewDie()
     }))
+
+    } else{
+      setTenzies(false)
+      setDice(allNewDice())
+    }
   }
 
   function holdDice(id){
@@ -61,6 +75,7 @@ export default function App() {
   return (
 
     <main className="App">
+      
 
       <h1 className="title">Tenzies</h1>
       <p className="instructions">Roll until all dice are the same.
@@ -69,7 +84,11 @@ export default function App() {
         {diceElements}
       </div>
 
-      <button className="roll-dice" onClick={rollDice}> Roll </button>
+      <button 
+      className="roll-dice" 
+      onClick={rollDice}>
+         {tenzies ? "New Game" : "Roll"}
+          </button>
 
     </main>
   );
