@@ -25,20 +25,35 @@ export default function App() {
   }
 
   function holdDice(id){
-    console.log(id)
+    setDice(oldDice => oldDice.map(die =>{
+      return die.id === id ?
+       {...die, isHeld: !die.isHeld } : 
+       die
+    }))
   }
 
   const diceElements = dice.map( die =>( 
-  <Die key={die.id} value={die.value} isHeld={die.isHeld} id={die.id} holdDice={ () => holdDice(die.id) }/> 
+
+  <Die
+  key={die.id}
+  value={die.value}
+  isHeld={die.isHeld}
+  id={die.id}
+  holdDice={ () => holdDice(die.id) }
+  /> 
+
   ))
 
   return (
+
     <main className="App">
 
       <div className="dice-container">
         {diceElements}
       </div>
+
       <button className="roll-dice" onClick={rollDice}> Roll </button>
+
     </main>
   );
 
