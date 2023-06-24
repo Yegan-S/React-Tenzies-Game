@@ -58,3 +58,39 @@ main{
 .roll-dice:active {
   box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
 }
+@media (max-width : 380px){
+  .title {
+    font-size: 20px;
+  }
+  .instructions{
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  .die-face{
+    height: 30px;
+    width: 30px;
+    padding-bottom: 5px;
+  }
+  .die-num{
+    font-size: 1.1rem;
+  }
+  .roll-dice {
+    height: 40px;
+    width: 90px;
+    font-size:1.1rem ;
+    margin-bottom: 5px;
+  }
+}
+@media (min-width : 900px) {
+  main{
+  height: 400px;
+    max-width: 900px;
+    border-radius: 5px;
+   margin: auto;
+
+  }
+}
+
+
+
+
